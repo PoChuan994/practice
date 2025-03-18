@@ -76,6 +76,25 @@
     - The `lea` instruction stores the address of `lock` into `rax`.
     - The `mov` instruction stores the value of `rax` into `rdi`.
     - The `call` instruction invokes `pthread_mutex_unlock()` to release the `lock` allowing other threads can acquire it.
+## Atomic Operation Implementation
+- In threadsAtomic.c, I use atomic operations to ensure the access to shared variable counter is not interrupted by other threads.
+- The output of this case is correct.
+    ```shell=
+    'Counter is 20000000 by thread'
+    ```
+- The key differences in the assembly code are shown below.
+    ```assembly=
+    11d1:	c7 45 ec 01 00 00 00 	movl   $0x1,-0x14(%rbp)
+    11d8:	8b 45 ec             	mov    -0x14(%rbp),%eax
+    11db:	89 c2                	mov    %eax,%edx
+    11dd:	89 d0                	mov    %edx,%eax
+    ```
+    - These instructions stores `1` into the register `eax` to increment `counter`.
+    ```assembly=
+    11df:	f0 0f c1 05 2d 2e 00 	lock xadd %eax,0x2e2d(%rip)        # 4014 <counter>
+    ```
+    - The prefix `lock` in this instruction ensures its execution is atomic.
+    - The `xadd` instruction completes to imcrement operation on the variable `counter`.
 # Reference
 - [深入理解 Linux 程式設計：從應用到核心](https://www.tenlong.com.tw/products/9789864764167)
 - [gfreewind](https://github.com/gfreewind/aple_codes/blob/master/chapter0/0.4.3/0_4_3_threads_cnt.c)
