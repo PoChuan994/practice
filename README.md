@@ -1,2 +1,2 @@
-- This repository serves as a platform for my implementation of learnig computer science.
+- This repository serves as a platform for my implementation of computer science learning.
 - The directory 'memory_leak' is the analysis of memory management and memory leak with *valgrind*.
