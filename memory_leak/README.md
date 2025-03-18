@@ -10,6 +10,10 @@
     5. *suppressed*: means that a leak error has been suppressed. There are some suppressions in the default suppression files. You can ignore suppressed errors.
 
 # Implementation
+- Environment Setting:
+    - Ubuntu Linux version: 24.04.1 LTS
+    - gcc version: 13.3.0
+    - Valgrind version: 3.22.0
 - Compile the *.c* file into executable file.
     ```shell
     $ gcc -g -o filename filename.c
