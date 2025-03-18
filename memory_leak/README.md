@@ -9,6 +9,24 @@
     4. *still reachable*: program is probably ok - it didn't free some memory it could have. This is quite common and often readable.
     5. *suppressed*: means that a leak error has been suppressed. There are some suppressions in the default suppression files. You can ignore suppressed errors.
 
+# Implementation
+## Definetly Lost
+- The error message without the `free(buff)` statement is shown as below.
+```shell=
+HEAP SUMMARY:
+    in use at exit: 10 bytes in 1 block.
+    total heap usage: 1 allocs, 0 frees, 10 bytes allocated.
+LEAK SUMMARY:
+    definetly lost: 10 bytes in 1 blocks.
+```
+- The result with the `free(buff)` statement is shown as below.
+```
+HEAP SUMMARY:
+    in use at exit: 0 bytes in 0 blocks.
+    total heap usage: 1 allocs, 1 frees, 10 bytes allocated.
+All heap blocks were free -- no leak are possible.
+```
+
 # Reference
 - [The Valgrind Quick Start Guide](https://valgrind.org/docs/manual/quick-start.html)
 - [Valgrind Frequently Asked Questions](https://valgrind.org/docs/manual/faq.html#faq.deflost)
