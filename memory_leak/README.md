@@ -1,6 +1,6 @@
 # Introduction
 - The files in this directory is used to learn 5 typical memory leak and the tool valgrind that is used to detect memory leak.
-- The full notes is in [hear](https://hackmd.io/@Cg9G-UQmRMyh-L6Jvkq_Gw/B1XkJaZ51e/https%3A%2F%2Fhackmd.io%2F%40Cg9G-UQmRMyh-L6Jvkq_Gw%2Fmemory_leak_analysis_with_valgrind).
+- The full notes is in [here](https://hackmd.io/@Cg9G-UQmRMyh-L6Jvkq_Gw/B1XkJaZ51e/https%3A%2F%2Fhackmd.io%2F%40Cg9G-UQmRMyh-L6Jvkq_Gw%2Fmemory_leak_analysis_with_valgrind).
 
 # Reference
 - [The Valgrind Quick Start Guide](https://valgrind.org/docs/manual/quick-start.html)
