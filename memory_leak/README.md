@@ -2,6 +2,13 @@
 - The files in this directory is used to learn 5 typical memory leak and the tool valgrind that is used to detect memory leak.
 - The full notes is in [here](https://hackmd.io/@Cg9G-UQmRMyh-L6Jvkq_Gw/B1XkJaZ51e/https%3A%2F%2Fhackmd.io%2F%40Cg9G-UQmRMyh-L6Jvkq_Gw%2Fmemory_leak_analysis_with_valgrind).
 
+- Memory leak types:
+    1. *definetly lost*: program is leaking memory.
+    2. *indirectly lost*: program is leaking memory in a pointer-based structure. If you fix the `definetly lost` leaks. the `indirectly lost` leaks should go away.
+    3. *possibly lost*: program is leaking memory, unless you're doing unusual things with pointers that could cause them to point into the middle of an allocated block.
+    4. *still reachable*: program is probably ok - it didn't free some memory it could have. This is quite common and often readable.
+    5. *suppressed*: means that a leak error has been suppressed. There are some suppressions in the default suppression files. You can ignore suppressed errors.
+
 # Reference
 - [The Valgrind Quick Start Guide](https://valgrind.org/docs/manual/quick-start.html)
 - [Valgrind Frequently Asked Questions](https://valgrind.org/docs/manual/faq.html#faq.deflost)
