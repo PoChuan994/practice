@@ -77,6 +77,16 @@
     LEAK SUMMARY:
         possibly lost: 7 bytes in 0 blocks
     ```
+## Invalid Access
+```shell=
+Invalid write of size 2
+
+Invalid read of size 4
+
+Invalid read of size 4
+
+Invalid free() / delete / delete[] / realloc()
+```
 # Reference
 - [The Valgrind Quick Start Guide](https://valgrind.org/docs/manual/quick-start.html)
 - [Valgrind Frequently Asked Questions](https://valgrind.org/docs/manual/faq.html#faq.deflost)
