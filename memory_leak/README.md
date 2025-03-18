@@ -10,6 +10,14 @@
     5. *suppressed*: means that a leak error has been suppressed. There are some suppressions in the default suppression files. You can ignore suppressed errors.
 
 # Implementation
+- Compile the *.c* file into executable file.
+    ```shell
+    $ gcc -g -o filename filename.c
+    ```
+ - Use *Valgrind* to detect memory leaks.
+    ```shell
+    $ valgrind --leak-check=full ./filename
+    ```
 ## Definetly Lost
 - The error message without the `free(buff)` statement is shown as below.
     ```shell=
