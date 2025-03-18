@@ -1,5 +1,5 @@
 # Introduction
-- The files in this directory is used to learn 5 typical memory leak and the tool valgrind that is used to detect memory leak.
+- The files in this directory is used to learn 5 typical memory leaks and the tool *valgrind* that is used to detect memory leak.
 - The full notes is in [here](https://hackmd.io/@Cg9G-UQmRMyh-L6Jvkq_Gw/B1XkJaZ51e/https%3A%2F%2Fhackmd.io%2F%40Cg9G-UQmRMyh-L6Jvkq_Gw%2Fmemory_leak_analysis_with_valgrind).
 
 - Memory leak types:
@@ -46,7 +46,29 @@
         definitely lost: 48 bytes in 2 blocks
         indirectly lost: 0 bytes in 0 blocks
     ```
-
+## Possibly Lost
+- The `free(p)` statement will not be executed because the program terminals at `abort()` statement.
+    ```shell=
+    Process terminating with default action of signal 6 (SIGABRT)
+        at 0x490EB2C: __pthread_kill_implementation (pthread_kill.c:44)
+        by 0x490EBC2: __pthread_kill_internal (pthread_kill.c:78)
+        by 0x490EBC2: pthread_kill@@GLIBC)2.34 (pthread_kill.c:89)
+        by 0x48B527D: raise (raise.c:26)
+        by 0x48988FE: abort (abort.c:79)
+        by 0x1091A0: main (possLoss.c:7)
+    
+    HEAPSUMMARY:
+        in use at exit: 7 bytes in 1 blocks
+        total heap usage: 1 allocas, 0 frees, 7 bytes allocated
+    
+    7 bytes in 1 blocks are possibly lost in loss record 1 of 1
+        at 0x4846828: malloc (in/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+        by 0x492435E: strdup (strdup.c:42)
+        by 0x109192: main (possLost.c:7)
+    
+    LEAK SUMMARY:
+        possibly lost: 7 bytes in 0 blocks
+    ```
 # Reference
 - [The Valgrind Quick Start Guide](https://valgrind.org/docs/manual/quick-start.html)
 - [Valgrind Frequently Asked Questions](https://valgrind.org/docs/manual/faq.html#faq.deflost)
