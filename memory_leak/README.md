@@ -78,15 +78,27 @@
         possibly lost: 7 bytes in 0 blocks
     ```
 ## Invalid Access
-```shell=
-Invalid write of size 2
-
-Invalid read of size 4
-
-Invalid read of size 4
-
-Invalid free() / delete / delete[] / realloc()
-```
+- There are four memory misoperations in the `invalidAccess.c`. However, after compiling it, only one warning message appears, and no error messages are generated.
+    
+    ```shell=
+    Invalid write of size 2
+        at 0x1091AD: main (invalidAccess.c:9)
+    Address 0x4a85044 is 0 bytes after a block of size 4 alloc'd
+        by 0x10919E: main (invalidAccess.c:8)
+        
+    Invalid write of size 4
+        at 0x1091D5: main (invalidAccess.c:14)
+    Address 0x4a850a0 is 0 bytes after a block of size 3 alloc'd
+        by 0x1091C8: main (invalidAccess.c:13)
+        
+    Invalid free() / delete / delete[] / realloc()
+        by 0x109220: main (invalidAccess.c:21)
+        
+    HEAP SUMMARY:
+        in use at exit: 0 bytes in 0 blocks
+        total heap usage: 3 allocs, 4 frees, 1031 bytes allocated
+    All heap blocks were freed -- no leaks are possible
+    ```
 # Reference
 - [The Valgrind Quick Start Guide](https://valgrind.org/docs/manual/quick-start.html)
 - [Valgrind Frequently Asked Questions](https://valgrind.org/docs/manual/faq.html#faq.deflost)
