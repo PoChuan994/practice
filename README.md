@@ -1,3 +1,4 @@
 - This repository serves as a platform for my implementation of computer science learning.
 - The 'memory_leak' directory is the analysis of memory management and memory leak with *valgrind*.
+- The 'segmentation fault' directory is the analysis of segmentation fault.
 - The 'thread_safety' directory is the analysis of critical section protection.
